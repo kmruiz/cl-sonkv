@@ -17,9 +17,9 @@
 
 (defun test ()
   (when (require! #'load-project)
-    ; (load "test/all.lisp")
-    ;(apply-symbol "run-all-tests!" nil :package 'oratory-backend/test)
-    t))
+    (let ((d (make-pathname :directory '(:relative "test") :name :wild :type "lisp")))
+      (mapcar #'load (directory d))
+      (funcall (symbol-function (find-symbol "RUN-TESTS!" :sonkv/test))))))
 
 (defun build ()
   (when (require! #'test)

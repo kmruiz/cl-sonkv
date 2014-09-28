@@ -19,4 +19,4 @@
 	       (:file "bucket")
 	       (:file "database")
 	       (:file "sonkv"))
-  :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel"))
+  :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel" "split-sequence" "lisp-unit"))
