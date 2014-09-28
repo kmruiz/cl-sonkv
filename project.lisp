@@ -12,14 +12,15 @@
     (setf %state nil)))
 
 (defun load-project ()
-  (load "src/sonkv.asd")
+  (load "src/sonkv.asd" :verbose nil :print nil)
   (asdf:load-system :sonkv))
 
 (defun test ()
   (when (require! #'load-project)
+    (load "test/runner.lisp")
     (let ((d (make-pathname :directory '(:relative "test") :name :wild :type "lisp")))
-      (mapcar #'load (directory d))
-      (funcall (symbol-function (find-symbol "RUN-TESTS!" :sonkv/test))))))
+      (mapcar (lambda (x) (unless (search "runner" (namestring x)) (load x))) (directory d))
+      (funcall (symbol-function (find-symbol "RUN-TESTS!" :sonkv))))))
 
 (defun build ()
   (when (require! #'test)

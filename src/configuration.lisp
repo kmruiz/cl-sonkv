@@ -1,7 +1,7 @@
 (in-package :sonkv)
 
-(defconstant +version+ "0.0.1")
-(defconstant +configuration-dir+
+(defparameter +version+ "0.0.1")
+(defparameter +configuration-dir+
   (make-pathname :directory '(:absolute "etc" "sonkv" "conf.d") :name :wild :type "lisp"))
 
 ;; INITIALIZE CONFIGURATION
@@ -12,7 +12,7 @@
 	   do (eval expr))))
 
 ;; CONFIGURE DEFAULT VARIABLES
-(defconstant +default-configuration+
+(defparameter +default-configuration+
   '(
 ;;; SERVER BASIC CONFIGURATION
     (+instance-name+ (machine-instance))
@@ -42,7 +42,7 @@
 (loop for i in +default-configuration+
    unless (boundp (car i))
    do (progn
-	(eval `(defconstant ,(car i) ,(cadr i)))))
+	(eval `(defparameter ,(car i) ,(cadr i)))))
 
 (defun print-logo ()
   (format t "

@@ -28,9 +28,6 @@ INDEX-OUT-OF-BOUNDS condition. Calling query on a removed element must return ni
 (defmethod unindex :before (bucket index)
   (assert (active bucket)))
 
-(defun thread-safe-p (o)
-  (eq  (type-of o) 'lazy-bucket))
-
 ;;; AN INTERFACE OF BUCKET, ALL BUCKETS MUST EXTEND THIS CLASS
 (defclass bucket () nil)
 
@@ -68,8 +65,7 @@ INDEX-OUT-OF-BOUNDS condition. Calling query on a removed element must return ni
     (t nil)))
 
 (defmethod unindex ((bucket lazy-bucket) (index number))
-  (when (>= 0 index (- (size bucket) 1))
-    (index bucket index nil)))
+  (index bucket index nil))
 
 ;;; THREAD-SAFE BUCKET IMPLEMENTATION
 ;;; IT DECORATES ANOTHER BUCKET AND PROVIDES THREAD-SAFE ACCESS
