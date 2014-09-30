@@ -18,31 +18,32 @@
 
 (defun make-basic-database (name)
   (make-instance 'database :name name :bucket (make-list-bucket +default-modulus+)))
-(defun %hash (db key)
-  (funcall (hash db) key))
 
-(defmethod db-set ((database database) (key string) value)
+(defun %hash (db key)
+  (funcall (hash db) (string key)))
+
+(defmethod db-set ((database database) key value)
   (index (bucket database) (%hash database key) value))
 
-(defmethod db-get ((database database) (key string))
+(defmethod db-get ((database database) key)
   (query (bucket database) (%hash database key)))
 
-(defmethod db-add ((database database) (key string) (value number))
+(defmethod db-add ((database database) key (value number))
   (let* ((bucket (bucket database)) (hash (%hash database key))
 	 (cur-val (or (query bucket hash) 0)))
     (when (numberp cur-val) (index bucket hash (+ cur-val value)))))
 
-(defmethod db-sub ((database database) (key string) (value number))
+(defmethod db-sub ((database database) key (value number))
   (let* ((bucket (bucket database)) (hash (%hash database key))
 	 (cur-val (or (query bucket hash) 0)))
     (when (numberp cur-val) (index bucket hash (- cur-val value)))))
 
-(defmethod db-mul ((database database) (key string) (value number))
+(defmethod db-mul ((database database) key (value number))
   (let* ((bucket (bucket database)) (hash (%hash database key))
 	 (cur-val (or (query bucket hash) 0)))
     (when (numberp cur-val) (index bucket hash (* cur-val value)))))
 
-(defmethod db-div ((database database) (key string) (value number))
+(defmethod db-div ((database database) key (value number))
   (unless (zerop value)
     (let* ((bucket (bucket database)) (hash (%hash database key))
 	   (cur-val (or (query bucket hash) 0)))
