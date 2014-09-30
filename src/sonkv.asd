@@ -18,6 +18,6 @@
 	       (:file "configuration")
 	       (:file "bucket")
 	       (:file "database")
-	       (:file "js-api")
+	       (:file "client-api")
 	       (:file "sonkv"))
   :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel" "split-sequence" "lisp-unit" "cl-js" "cl-json"))
