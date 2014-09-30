@@ -20,4 +20,4 @@
 	       (:file "database")
 	       (:file "js-api")
 	       (:file "sonkv"))
-  :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel" "split-sequence" "lisp-unit" "cl-js"))
+  :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel" "split-sequence" "lisp-unit" "cl-js" "cl-json"))

@@ -52,7 +52,7 @@
 |___|___|_|_|_,_|\\_/~a
 =============================
 > Environment: ~a on ~a ~a ~a
-> ~a@~a"
+> ~a@~a~%"
 	  +version+
 	  (lisp-implementation-type)
 	  (software-type)
