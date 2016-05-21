@@ -14,10 +14,10 @@
   :description "A key value store"
   :long-description "Lisp implementation of a persistent key-value store"
   :serial t
-  :components ((:file "package")
-	       (:file "configuration")
-	       (:file "bucket")
-	       (:file "database")
-	       (:file "client-api")
-	       (:file "sonkv"))
+  :components ((:file "src/package")
+	       (:file "src/configuration")
+	       (:file "src/bucket")
+	       (:file "src/database")
+	       (:file "src/client-api")
+	       (:file "src/sonkv"))
   :depends-on ("bordeaux-threads" "cl-murmurhash" "cl-async" "babel" "split-sequence" "lisp-unit" "cl-js" "cl-json"))
